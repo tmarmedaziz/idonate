@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "520976506621",
+    "project_id": "idonate-test-7e4c8",
+    "storage_bucket": "idonate-test-7e4c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520976506621:android:e73d8d1086b9d233812894",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520976506621-n84tq8hh8nr5sgi7et5v77llpmel40pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkVHJvZovY4FopVBubnSCNRR33PVd57W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520976506621-n84tq8hh8nr5sgi7et5v77llpmel40pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
