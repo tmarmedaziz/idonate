@@ -141,7 +141,7 @@ class _ProfileState extends State<Profile> {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 10, left: 155),
+                  padding: EdgeInsets.only(top: 20, left: 155),
                   child: ClipOval(
                     child: Image.asset(
                       "Assets/image2.jpg",
@@ -198,9 +198,9 @@ class _ProfileState extends State<Profile> {
             SizedBox(
               height: 20,
             ),
-            listview(text: 'Donation Type : O + ', color: Colors.red),
+            listview(text: 'Blood Type : O + ', color: Colors.red),
             listview(text: 'History donation', color: Colors.red),
-            listview(text: 'Bloody Journey', color: Colors.red),
+            listview(text: 'Blood Journey', color: Colors.red),
             listview(text: 'History donation', color: Colors.red),
           ],
         ),

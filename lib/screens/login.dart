@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // password field
     final passwordField = TextFormField(
       autofocus: false,
-      // obscureText: true,
+      obscureText: true,
       controller: passwordcontroller,
       //validators
       onSaved: (value) {
