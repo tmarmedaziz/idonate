@@ -32,6 +32,8 @@ dependencies:
   firebase_auth: ^3.2.0
   cloud_firestore: ^3.1.0
   flutter_cupertino_date_picker: ^1.0.26+2
+  table_calendar: ^3.0.3
+
 
 
   # The following adds the Cupertino Icons font to your application.

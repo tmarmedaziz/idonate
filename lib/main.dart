@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login.dart';
+import 'package:flutter_application_1/screens/profile.dart';
 import 'package:flutter_application_1/screens/registration.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: Profile(),
     );
   }
 }
