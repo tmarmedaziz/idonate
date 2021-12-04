@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login.dart';
@@ -11,7 +12,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Profile(),
+      home: Home(),
+      routes: {
+        '/logout': (context) => const LoginScreen(),
+      },
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSplashScreen(
+      duration: 1000,
+      splashIconSize: 300,
+      splash: Image.asset(
+        'Assets/logo.png',
+      ),
+      nextScreen: LoginScreen(),
+      splashTransition: SplashTransition.scaleTransition,
     );
   }
 }

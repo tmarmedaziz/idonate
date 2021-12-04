@@ -1,4 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/login.dart';
+
+Widget list({required String text, required Function ontap}) {
+  return Column(
+    children: [
+      SizedBox(
+        height: 15,
+      ),
+      ListTile(
+        title: Container(
+          padding: EdgeInsets.only(top: 14),
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        onTap: () {
+          ontap();
+        },
+      ),
+      SizedBox(
+        height: 15,
+      )
+    ],
+  );
+}
 
 class Profile extends StatefulWidget {
   @override
@@ -10,37 +42,6 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     DateTime? _myDateTime;
     String time = 'Pick a date';
-
-    Widget list({required String text, required Function path}) {
-      return Column(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          ListTile(
-            title: Container(
-              padding: EdgeInsets.only(top: 14),
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Text(
-                text,
-                style: TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            onTap: () {
-              path;
-            },
-          ),
-          SizedBox(
-            height: 15,
-          )
-        ],
-      );
-    }
 
     Widget listview({required String text, required Color color}) {
       return Column(children: [
@@ -113,25 +114,22 @@ class _ProfileState extends State<Profile> {
               child: null,
             ),
           ),
-          list(
-              text: 'Edit Profile',
-              path: () {
-                Navigator.pop(context);
-              }),
+          list(text: 'Edit Profile', ontap: () {}),
           list(
               text: 'View health vitals',
-              path: () {
+              ontap: () {
                 Navigator.pop(context);
               }),
           list(
               text: 'Change password',
-              path: () {
+              ontap: () {
                 Navigator.pop(context);
               }),
           list(
               text: 'Logout',
-              path: () {
-                Navigator.pop(context);
+              ontap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) => const LoginScreen()));
               }),
         ]),
       ),
