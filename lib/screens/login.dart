@@ -27,8 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       autofocus: false,
       controller: emailcontroller,
       keyboardType: TextInputType.emailAddress,
-      validator: (value)
-      {
+      validator: (value) {
         if (value!.isEmpty) {
           return ("Please Enter your Email");
         }
@@ -53,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
       autofocus: false,
       obscureText: true,
       controller: passwordcontroller,
-      validator: (value){
+      validator: (value) {
         RegExp regex = new RegExp(r'^.{6,}$');
         if (value!.isEmpty) {
           return ("Password is required for Login");
@@ -82,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
           signIn(emailcontroller.text, passwordcontroller.text);
-          },
+        },
         child: const Text(
           "login",
           textAlign: TextAlign.center,
@@ -190,7 +189,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Text('----------------------------------------------------'),
+                    const Text(
+                        '----------------------------------------------------'),
                     const SizedBox(
                       height: 10,
                     ),
@@ -214,22 +214,21 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     ));
   }
-  void signIn(String email, String password)async
-  {
+
+  void signIn(String email, String password) async {
     if (_formkey.currentState!.validate()) {
       await _auth
-      .signInWithEmailAndPassword(email: email, password : password)
-      .then((uid) => 
-      {
-        Fluttertoast.showToast(msg : "Login Successful"),
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder : (context) => Profile()    ))
-      }).catchError((e){
-        Fluttertoast.showToast(msg : e!.message);
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                Fluttertoast.showToast(msg: "Login Successful"),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Profile()))
+              })
+          .catchError((e) {
+        Fluttertoast.showToast(msg: e!.message);
       });
     }
   }
-
-
 }
 
 

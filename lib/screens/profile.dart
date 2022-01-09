@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login.dart';
+import 'package:flutter_application_1/screens/profile.dart';
 
 Widget list({required String text, required Function ontap}) {
   return Column(

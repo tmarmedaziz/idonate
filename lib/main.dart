@@ -9,8 +9,8 @@ import 'package:flutter_application_1/screens/registration.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());}
-
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
       splash: Image.asset(
         'Assets/logo.png',
       ),
-      nextScreen: LoginScreen(),
+      nextScreen: const LoginScreen(),
       splashTransition: SplashTransition.scaleTransition,
     );
   }
