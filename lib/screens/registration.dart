@@ -52,7 +52,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       controller: firstnamecontroller,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("First name cannot be empty");
         }
@@ -77,7 +77,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       controller: lastnamecontroller,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("Last name cannot be empty");
         }
@@ -157,7 +157,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: true,
       validator: (value) {
         if (confirmpasswordcontroller.text != passwordcontroller.text) {
-          return "Password dont match";
+          return "Password does not match";
         }
         return null;
       },
@@ -259,21 +259,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         ElevatedButton(
-                            style:
-                                ElevatedButton.styleFrom(primary: Colors.red),
-                            onPressed: () async {
-                              _myDateTime = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2010),
-                                  lastDate: DateTime(2022));
-                              setState(() {
-                                // ignore: unused_local_variable
-                                final now = DateTime.now();
-                                time = _myDateTime.toString().split(' ')[0];
-                              });
-                            },
-                            child: Text(time)),
+                          style: ElevatedButton.styleFrom(primary: Colors.red),
+                          onPressed: () async {
+                            _myDateTime = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1970),
+                                lastDate: DateTime(2030));
+                            setState(() {
+                              // ignore: unused_local_variable
+                              final now = DateTime.now();
+                              time = _myDateTime.toString().split(' ')[0];
+                            });
+                          },
+                          child: Text(time),
+                        ),
                       ],
                     ),
 
@@ -324,10 +324,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         //   ),
                       ],
                     ),
+
                     Padding(
                       padding: const EdgeInsets.fromLTRB(80, 0, 80, 0),
                       child: registrationButton,
                     ),
+
                     //  buildDatePicker(),
                   ],
                 ),
@@ -349,7 +351,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  void signUp(String emil, String password) async {
+  void signUp(String email, String password) async {
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -370,6 +372,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.firstName = firstnamecontroller.text;
     userModel.lastName = lastnamecontroller.text;
+    // date and gender
 
     await firebaseFirestore
         .collection("users")
