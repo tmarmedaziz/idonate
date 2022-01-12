@@ -30,7 +30,7 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   @override
   int currentstep = 0;
-  int saved = 0;
+  int? saved;
   String? selectedcity = '';
   String? selectedcenter ;
   int center = 0;
@@ -255,11 +255,13 @@ class _BookingScreenState extends State<BookingScreen> {
           currentStep: currentstep,
           onStepTapped: (step) => setState(() => currentstep=step),
           onStepContinue: (){
-            final isLastStep = currentstep == getSteps().length -1;
-            if(isLastStep){
-              currentstep = 3;
-            }
-
+            final isLastStep = currentstep == getSteps().length-1;
+            // if(isLastStep){
+            //   Navigator.pushNamed(context, 'Profile');
+            // }
+            currentstep == getSteps().length-1 ? Navigator.pushNamed(context, 'Profile'):(){
+            setState(() => currentstep += 1);
+          };
 
             setState(() => currentstep += 1);
           },
