@@ -1,10 +1,6 @@
-//import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/model/user_model.dart';
 import 'package:flutter_application_1/screens/profile.dart';
@@ -44,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     DateTime? _myDateTime;
-    // ignore: unused_local_variable
+
     Sex? _character = Sex.male;
 
     final firstnameField = TextFormField(
@@ -52,7 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       controller: firstnamecontroller,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("First name cannot be empty");
         }
@@ -66,7 +62,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.mail),
+          prefixIcon: const Icon(Icons.account_circle),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "First name",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
@@ -77,7 +73,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       controller: lastnamecontroller,
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
-        RegExp regex = new RegExp(r'^.{3,}$');
+        RegExp regex = RegExp(r'^.{3,}$');
         if (value!.isEmpty) {
           return ("Last name cannot be empty");
         }
@@ -91,7 +87,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.mail),
+          prefixIcon: const Icon(Icons.account_circle),
           contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Last name",
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
@@ -157,7 +153,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       obscureText: true,
       validator: (value) {
         if (confirmpasswordcontroller.text != passwordcontroller.text) {
-          return "Password dont match";
+          return "Password does not match";
         }
         return null;
       },
@@ -259,21 +255,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         ElevatedButton(
-                            style:
-                                ElevatedButton.styleFrom(primary: Colors.red),
-                            onPressed: () async {
-                              _myDateTime = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2010),
-                                  lastDate: DateTime(2022));
-                              setState(() {
-                                // ignore: unused_local_variable
-                                final now = DateTime.now();
-                                time = _myDateTime.toString().split(' ')[0];
-                              });
-                            },
-                            child: Text(time)),
+                          style: ElevatedButton.styleFrom(primary: Colors.red),
+                          onPressed: () async {
+                            _myDateTime = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1970),
+                                lastDate: DateTime(2030));
+                            setState(() {
+                              // ignore: unused_local_variable
+                              final now = DateTime.now();
+                              time = _myDateTime.toString().split(' ')[0];
+                            });
+                          },
+                          child: Text(time),
+                        ),
                       ],
                     ),
 
@@ -295,7 +291,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onChanged: (value) {
                             setState(() {
                               _value = value as Sex;
-                              print(_value);
                             });
                           },
                         ),
@@ -307,27 +302,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onChanged: (value) {
                             setState(() {
                               _value = value as Sex;
-                              print(_value);
                             });
                           },
                         ),
-                        //   const SizedBox(width: 25,),
-                        //   Text('Female'),
-                        // Radio(
-                        //     value: Sex.female,
-                        //     groupValue: _character,
-                        //     onChanged: (Sex? value) {
-                        //       setState(() {
-                        //         _character = value;
-                        //       });
-                        //     },
-                        //   ),
                       ],
                     ),
+
                     Padding(
                       padding: const EdgeInsets.fromLTRB(80, 0, 80, 0),
                       child: registrationButton,
                     ),
+
                     //  buildDatePicker(),
                   ],
                 ),
@@ -339,9 +324,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
       bottomNavigationBar: BottomAppBar(
           child: Container(
+            
         color: Colors.red,
-        child: Text(
-          "All Rights are saved © 2021",
+        child: const Text(
+          "All Rights are saved © 2022",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 15),
         ),
@@ -349,7 +335,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 
-  void signUp(String emil, String password) async {
+  void signUp(String email, String password) async {
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
@@ -370,6 +356,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.firstName = firstnamecontroller.text;
     userModel.lastName = lastnamecontroller.text;
+    userModel.dateBirth = time;
+    userModel.gender = _value.toString();
 
     await firebaseFirestore
         .collection("users")

@@ -1,15 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/Appoint.dart';
-import 'package:flutter_application_1/screens/login.dart';
-import 'package:flutter_application_1/screens/profile.dart';
-import 'package:flutter_application_1/screens/test.dart';
 
-Widget list({required String text, required Function ontap}) {
+import 'package:flutter_application_1/screens/login.dart';
+
+import 'package:flutter_application_1/model/user_model.dart';
+import 'package:flutter_application_1/screens/appeal.dart';
+import 'package:flutter_application_1/screens/history.dart';
+import 'package:flutter_application_1/screens/type.dart';
+import 'package:flutter_application_1/screens/vitals.dart';
+
+Widget list({required String text, required Function ontap, color}) {
   return Column(
     children: [
-      SizedBox(
-        height: 15,
-      ),
+      const SizedBox(height: 15),
       ListTile(
         title: Container(
           padding: EdgeInsets.only(top: 14),
@@ -28,9 +32,7 @@ Widget list({required String text, required Function ontap}) {
           ontap();
         },
       ),
-      SizedBox(
-        height: 15,
-      )
+      const SizedBox(height: 15),
     ],
   );
 }
@@ -41,14 +43,32 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
+  DateTime? _myDateTime;
+  String time = 'Pick a date';
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      this.loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    DateTime? _myDateTime;
-    String time = 'Pick a date';
+    //DateTime? _myDateTime;
+    //String time = 'Pick a date';
 
     Widget listview({required String text, required Color color}) {
       return Column(children: [
-        Container(
+        SizedBox(
             width: 350,
             child: Column(
               children: <Widget>[
@@ -59,23 +79,17 @@ class _ProfileState extends State<Profile> {
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.bloodtype,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
+                      const Icon(Icons.bloodtype, color: Colors.white),
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        text,
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
+                      Text(text,
+                          style: const TextStyle(
+                              fontSize: 20, color: Colors.white)),
                     ],
                   )),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
+                const SizedBox(height: 5),
               ],
             ))
       ]);
@@ -83,32 +97,19 @@ class _ProfileState extends State<Profile> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
+        toolbarHeight: 90,
         backgroundColor: Colors.red,
         title: Text(
-          'UserName',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          "${loggedInUser.firstName} ${loggedInUser.lastName}",
+          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 20),
         ),
         centerTitle: true,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              print("Container clicked");
-            },
-            child: Container(
-                padding: const EdgeInsets.only(top: 25, right: 20),
-                child: const Text(
-                  'Schedule',
-                  style: TextStyle(fontSize: 15),
-                )),
-          )
-        ],
       ),
       drawer: Drawer(
         child: ListView(children: [
-          Container(
-            height: 158,
-            child: const DrawerHeader(
+          const SizedBox(
+            height: 100,
+            child: DrawerHeader(
               decoration: BoxDecoration(
                   color: Colors.red,
                   image: DecorationImage(
@@ -117,9 +118,8 @@ class _ProfileState extends State<Profile> {
               child: null,
             ),
           ),
-          list(text: 'Edit Profile', ontap: () {}),
           list(
-              text: 'View health vitals',
+              text: 'Edit Profile',
               ontap: () {
                 Navigator.pop(context);
               }),
@@ -138,14 +138,16 @@ class _ProfileState extends State<Profile> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, //AA
           children: [
+            const SizedBox(height: 20),
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 20, left: 155),
+                  padding: const EdgeInsets.only(top: 20, left: 140),
                   child: ClipOval(
                     child: Image.asset(
-                      "Assets/image2.jpg",
+                      "Assets/profile_pic.jpg",
                       height: 100,
                       width: 100,
                       fit: BoxFit.cover,
@@ -154,30 +156,25 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
+            const SizedBox(height: 30),
             SizedBox(
-              height: 20,
-            ),
-            Container(
               width: 350,
               height: 60,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(18.0),
-                ),
+                    borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
                 onPressed: ()  {
                   Navigator.pushNamed(context, 'Booking');
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.date_range,
                       color: Colors.white,
                     ),
-                    SizedBox(
-                      width: 30,
-                    ),
+                    SizedBox(width: 30),
                     Text(
                       'Schedule Appointment',
                       style: TextStyle(color: Colors.white, fontSize: 20),
@@ -186,13 +183,117 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
+            const SizedBox(height: 20),
             SizedBox(
-              height: 20,
+              width: 350,
+              height: 40,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0)),
+                color: Colors.red,
+                onPressed: () async {
+                  final userdata = await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .get();
+                  final bloodtype = userdata.data()!['bloodType'];
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => BloodType(bloodtype: bloodtype)));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(width: 30),
+                    Text(
+                      'Blood Type',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            listview(text: 'Blood Type : O + ', color: Colors.red),
-            listview(text: 'History donation', color: Colors.red),
-            listview(text: 'Blood Journey', color: Colors.red),
-            listview(text: 'History donation', color: Colors.red),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 350,
+              height: 40,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0)),
+                color: Colors.red,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (_) => History()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(width: 30),
+                    Text(
+                      'Donation History',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 350,
+              height: 40,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0)),
+                color: Colors.red,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (_) => Vitals()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(width: 30),
+                    Text(
+                      'View health vitals',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: 350,
+              height: 60,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0)),
+                color: Colors.red,
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const Appeal()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.data_saver_off_rounded,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 30),
+                    Text(
+                      'Update an appeal',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

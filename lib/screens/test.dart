@@ -124,7 +124,7 @@ class _BookingScreenState extends State<BookingScreen> {
            child: Column(
       children: [
       Container(
-        color: Colors.red,
+        color: Colors.red, 
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
