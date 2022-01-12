@@ -40,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     DateTime? _myDateTime;
-    // ignore: unused_local_variable
+
     Sex? _character = Sex.male;
 
     final firstnameField = TextFormField(
@@ -291,7 +291,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onChanged: (value) {
                             setState(() {
                               _value = value as Sex;
-                              print(_value);
                             });
                           },
                         ),
@@ -303,21 +302,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onChanged: (value) {
                             setState(() {
                               _value = value as Sex;
-                              print(_value);
                             });
                           },
                         ),
-                        //   const SizedBox(width: 25,),
-                        //   Text('Female'),
-                        // Radio(
-                        //     value: Sex.female,
-                        //     groupValue: _character,
-                        //     onChanged: (Sex? value) {
-                        //       setState(() {
-                        //         _character = value;
-                        //       });
-                        //     },
-                        //   ),
                       ],
                     ),
 
@@ -368,7 +355,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.firstName = firstnamecontroller.text;
     userModel.lastName = lastnamecontroller.text;
-    // date and gender
+    userModel.dateBirth = time;
+    userModel.gender = _value.toString();
 
     await firebaseFirestore
         .collection("users")

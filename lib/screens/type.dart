@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/profile.dart';
 
@@ -20,9 +21,6 @@ enum types {
 }
 
 class _BloodTypeState extends State<BloodType> {
-  List<String> types1 = ['O-', 'O+', 'A-', 'A+', 'B-', 'B+', 'AB-', 'AB+'];
-  List<String> tempArray = [];
-
   types _value = types.Onegatif;
 
   @override
@@ -73,7 +71,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -93,7 +90,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -113,7 +109,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -133,7 +128,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -153,7 +147,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -173,7 +166,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -193,7 +185,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),
@@ -213,7 +204,6 @@ class _BloodTypeState extends State<BloodType> {
                 onChanged: (value) {
                   setState(() {
                     _value = value as types;
-                    print(_value);
                   });
                 },
               ),

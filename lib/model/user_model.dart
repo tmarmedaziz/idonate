@@ -6,22 +6,26 @@ class UserModel {
   String? email;
   String? firstName;
   String? lastName;
-  //DateTime? dateBirth;
-  //String? gender;
+  String? dateBirth;
+  String? gender;
 
-  UserModel({this.uid, this.email, this.firstName, this.lastName});
-  //date and gender
+  UserModel(
+      {this.uid,
+      this.email,
+      this.firstName,
+      this.lastName,
+      this.dateBirth,
+      this.gender});
 
   // receiving data from servor
   factory UserModel.fromMap(map) {
     return UserModel(
-      uid: map['uid'],
-      email: map['email'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
-    );
-    //dateBirth: map['dateBirth'],
-    //gender: map['gender']);
+        uid: map['uid'],
+        email: map['email'],
+        firstName: map['firstName'],
+        lastName: map['lastName'],
+        dateBirth: map['dateBirth'],
+        gender: map['gender']);
   }
 
   // sending data to server
@@ -31,8 +35,8 @@ class UserModel {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
-      //'dateBirth': dateBirth,
-      //'gender': gender,
+      'dateBirth': dateBirth,
+      'gender': gender,
     };
   }
 }

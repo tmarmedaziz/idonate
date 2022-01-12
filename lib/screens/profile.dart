@@ -138,13 +138,14 @@ class _ProfileState extends State<Profile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, //AA
           children: [
+            const SizedBox(height: 20),
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 20, left: 155),
+                  padding: const EdgeInsets.only(top: 20, left: 140),
                   child: ClipOval(
                     child: Image.asset(
-                      "Assets/image2.jpg",
+                      "Assets/profile_pic.jpg",
                       height: 100,
                       width: 100,
                       fit: BoxFit.cover,
@@ -153,7 +154,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             SizedBox(
               width: 350,
               height: 60,
