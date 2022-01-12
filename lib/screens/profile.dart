@@ -198,19 +198,27 @@ class _ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
-                onPressed: () {
+                onPressed: () async {
+                  final userdata = await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .get();
+                  final bloodtype = userdata.data()!['bloodType'];
+
                   Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => BloodType()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => BloodType(bloodtype: bloodtype)));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     SizedBox(width: 30),
                     Text(
                       'Blood Type',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 20),
-                    )
+                    ),
                   ],
                 ),
               ),

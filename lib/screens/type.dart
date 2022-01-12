@@ -4,26 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/profile.dart';
 
 class BloodType extends StatefulWidget {
-  const BloodType({Key? key}) : super(key: key);
+  final String? bloodtype;
+  const BloodType({Key? key, required this.bloodtype}) : super(key: key);
 
   @override
   _BloodTypeState createState() => _BloodTypeState();
 }
 
-enum types {
-  Onegatif,
-  Opositif,
-  Anegatif,
-  Apositif,
-  Bnegatif,
-  Bpositif,
-  ABnegatif,
-  ABpositif
-}
-
 class _BloodTypeState extends State<BloodType> {
-  types _value = types.Onegatif;
-
+  late String _value = widget.bloodtype ?? 'Onegatif';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,11 +56,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Onegatif,
+                value: 'Onegatif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -86,11 +75,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Opositif,
+                value: 'Opositif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -105,11 +94,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Anegatif,
+                value: 'Anegatif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -124,11 +113,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Apositif,
+                value: 'Apositif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -143,11 +132,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Bnegatif,
+                value: 'Bnegatif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -162,11 +151,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.Bpositif,
+                value: 'Bpositif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -181,11 +170,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.ABnegatif,
+                value: 'ABnegatif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -200,11 +189,11 @@ class _BloodTypeState extends State<BloodType> {
               ),
               Radio(
                 activeColor: Colors.red,
-                value: types.ABpositif,
+                value: 'ABpositif',
                 groupValue: _value,
                 onChanged: (value) {
                   setState(() {
-                    _value = value as types;
+                    _value = value as String;
                   });
                 },
               ),
@@ -223,7 +212,7 @@ class _BloodTypeState extends State<BloodType> {
                   await FirebaseFirestore.instance
                       .collection("users")
                       .doc(FirebaseAuth.instance.currentUser!.uid)
-                      .update({"BloodType": _value.toString()});
+                      .update({"bloodType": _value.toString()});
 
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (_) => Profile()));

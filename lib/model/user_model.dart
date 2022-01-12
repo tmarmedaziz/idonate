@@ -8,6 +8,7 @@ class UserModel {
   String? lastName;
   String? dateBirth;
   String? gender;
+  String? bloodType;
 
   UserModel(
       {this.uid,
@@ -15,7 +16,8 @@ class UserModel {
       this.firstName,
       this.lastName,
       this.dateBirth,
-      this.gender});
+      this.gender,
+      this.bloodType});
 
   // receiving data from servor
   factory UserModel.fromMap(map) {
@@ -25,7 +27,8 @@ class UserModel {
         firstName: map['firstName'],
         lastName: map['lastName'],
         dateBirth: map['dateBirth'],
-        gender: map['gender']);
+        gender: map['gender'],
+        bloodType: map['bloodType']);
   }
 
   // sending data to server
@@ -37,6 +40,7 @@ class UserModel {
       'lastName': lastName,
       'dateBirth': dateBirth,
       'gender': gender,
+      'bloodType': bloodType,
     };
   }
 }
