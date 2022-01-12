@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/Appoint.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/screens/profile.dart';
+import 'package:flutter_application_1/screens/test.dart';
 
 Widget list({required String text, required Function ontap}) {
   return Column(
@@ -81,7 +83,7 @@ class _ProfileState extends State<Profile> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 150,
+        toolbarHeight: 70,
         backgroundColor: Colors.red,
         title: Text(
           'UserName',
@@ -94,10 +96,10 @@ class _ProfileState extends State<Profile> {
               print("Container clicked");
             },
             child: Container(
-                padding: const EdgeInsets.only(top: 63, right: 20),
+                padding: const EdgeInsets.only(top: 25, right: 20),
                 child: const Text(
                   'Schedule',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 )),
           )
         ],
@@ -163,18 +165,8 @@ class _ProfileState extends State<Profile> {
                   borderRadius: new BorderRadius.circular(18.0),
                 ),
                 color: Colors.red,
-                onPressed: () async {
-                  _myDateTime = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(2010),
-                      lastDate: DateTime(2022));
-
-                  setState(() {
-                    // ignore: unused_local_variable
-                    final now = DateTime.now();
-                    time = _myDateTime.toString().split(' ')[0];
-                  });
+                onPressed: ()  {
+                  Navigator.pushNamed(context, 'Booking');
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

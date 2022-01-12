@@ -1,3 +1,5 @@
+
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/login.dart';
 import 'package:flutter_application_1/screens/profile.dart';
 import 'package:flutter_application_1/screens/registration.dart';
+import 'package:flutter_application_1/screens/test.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +23,8 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         '/logout': (context) => const LoginScreen(),
+        'Booking':(context) => const BookingScreen(),
+        'Profile':(context)=>  Profile()
       },
     );
   }
@@ -34,7 +39,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      duration: 1000,
+      duration: 100,
       splashIconSize: 300,
       splash: Image.asset(
         'Assets/logo.png',
