@@ -338,7 +338,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       bottomNavigationBar: BottomAppBar(
           child: Container(
         color: Colors.red,
-        child: Text(
+        child: const Text(
           "All Rights are saved © 2021",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 15),

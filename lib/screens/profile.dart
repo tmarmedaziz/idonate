@@ -154,7 +154,7 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             const SizedBox(height: 20),
-            Container(
+            SizedBox(
               width: 350,
               height: 60,
               child: RaisedButton(
@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.date_range,
                       color: Colors.white,
@@ -228,7 +228,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     SizedBox(width: 30),
                     Text(
                       'Donation History',
@@ -253,7 +253,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     SizedBox(width: 30),
                     Text(
                       'View health vitals',
@@ -273,12 +273,12 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => Appeal()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const Appeal()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.data_saver_off_rounded,
                       color: Colors.white,

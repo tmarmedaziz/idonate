@@ -26,7 +26,7 @@ class _VitalsState extends State<Vitals> {
         centerTitle: true,
         automaticallyImplyLeading: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (_) => Profile()),
