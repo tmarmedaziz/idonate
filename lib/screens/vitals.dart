@@ -33,6 +33,11 @@ class _VitalsState extends State<Vitals> {
           ),
         ),
       ),
+      body: Column(
+        children: const [
+          SizedBox(height: 20),
+        ]
+      ),
     );
   }
 }
