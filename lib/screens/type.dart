@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/profile.dart';
@@ -218,7 +219,12 @@ class _BloodTypeState extends State<BloodType> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
-                onPressed: () {
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .update({"BloodType": _value.toString()});
+
                   Navigator.pushReplacement(
                       context, MaterialPageRoute(builder: (_) => Profile()));
                 },
