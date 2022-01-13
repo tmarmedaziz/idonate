@@ -8,7 +8,6 @@ import 'package:flutter_application_1/model/Center_model.dart';
 import 'package:flutter_application_1/model/user_model.dart';
 import 'package:flutter_application_1/utils/utils.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/model/All_Centers_ref.dart';
@@ -62,11 +61,11 @@ class _BookingScreenState extends State<BookingScreen> {
             child: FutureBuilder(
                 future: getCities(),
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting)
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  else {
+                  } else {
                     var cities = snapshot.data as List<CityModel>;
                     if (cities == null || cities.length == 0) {
                       return Center(
@@ -113,17 +112,17 @@ class _BookingScreenState extends State<BookingScreen> {
                         future: getCentersByCity(selectedcity.toString()),
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
-                              ConnectionState.waiting)
+                              ConnectionState.waiting) {
                             return Center(
                               child: CircularProgressIndicator(),
                             );
-                          else {
+                          } else {
                             var centers = snapshot.data as List<CenterModel>;
-                            if (centers == null || centers.length == 0)
+                            if (centers == null || centers.length == 0) {
                               return Center(
                                 child: Text('Cannot load centers list'),
                               );
-                            else
+                            } else {
                               return ListView.builder(
                                   itemCount: centers.length,
                                   itemBuilder: (context, position) {
@@ -152,6 +151,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                           ),
                                         ));
                                   });
+                            }
                           }
                         })))),
         Step(

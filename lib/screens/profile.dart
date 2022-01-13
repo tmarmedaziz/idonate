@@ -45,7 +45,6 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
-  DateTime? _myDateTime;
   String time = 'Pick a date';
 
   @override

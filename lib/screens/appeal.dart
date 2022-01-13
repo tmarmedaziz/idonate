@@ -36,7 +36,7 @@ class _AppealState extends State<Appeal> {
       body: Center(
         child: Column(
           children: <Widget>[
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               width: 350,
               height: 40,
@@ -44,10 +44,10 @@ class _AppealState extends State<Appeal> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
                 ),
-                color: Colors.red,
+                color: Colors.redAccent,
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => Appeal()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const Appeal()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

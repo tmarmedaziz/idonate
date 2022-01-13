@@ -207,7 +207,7 @@ class _BloodTypeState extends State<BloodType> {
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0)),
-                color: Colors.red,
+                color: Colors.redAccent,
                 onPressed: () async {
                   await FirebaseFirestore.instance
                       .collection("users")
