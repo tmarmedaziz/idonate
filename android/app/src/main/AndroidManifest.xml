@@ -2,7 +2,7 @@
     package="com.example.flutter_application_1">
    <application
         android:label="iDonate"
-        android:icon="Assets/logo.png">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

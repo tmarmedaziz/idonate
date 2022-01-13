@@ -164,7 +164,7 @@ class _ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
-                onPressed: ()  {
+                onPressed: () {
                   Navigator.pushNamed(context, 'Booking');
                 },
                 child: Row(
