@@ -43,9 +43,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String time = 'Pick a date';
+
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
-  String time = 'Pick a date';
+  
 
   @override
   void initState() {
@@ -224,8 +226,8 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => History()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const History()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -249,15 +251,15 @@ class _ProfileState extends State<Profile> {
                     borderRadius: BorderRadius.circular(18.0)),
                 color: Colors.red,
                 onPressed: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (_) => Vitals()));
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const Vitals()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     SizedBox(width: 30),
                     Text(
-                      'View health vitals',
+                      'View Health Vitals',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )
@@ -286,7 +288,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     SizedBox(width: 30),
                     Text(
-                      'Update an appeal',
+                      'Update An Appeal',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )
                   ],
