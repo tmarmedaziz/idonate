@@ -133,8 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: <Widget>[
                     RichText(
                       textAlign: TextAlign.center,
-                      text: TextSpan(children: [
-                        const TextSpan(
+                      text: const TextSpan(children: [
+                        TextSpan(
                           text: "Every drop of",
                           style: TextStyle(
                             fontSize: 15,
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text: " BLOOD",
                           style: TextStyle(
                             fontSize: 15,
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text: " is like a",
                           style: TextStyle(
                             fontSize: 15,
@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text: " BREATH",
                           style: TextStyle(
                             fontSize: 15,
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text: " for someone else",
                           style: TextStyle(
                             fontSize: 15,
